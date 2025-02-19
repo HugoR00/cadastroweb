@@ -1,12 +1,20 @@
 package classes;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Informacoes {
     private String login;
     private String senha;
     private String usuarioAcPosto;
-    private List listaCnpj;
+    private ArrayList<String> cnpj;
+
+    public Informacoes() {
+        this.login = login;
+        this.senha = senha;
+        this.usuarioAcPosto = usuarioAcPosto;
+        this.cnpj = new ArrayList<>();
+    }
 
     public String getLogin() {
         return login;
@@ -32,12 +40,24 @@ public class Informacoes {
         this.usuarioAcPosto = usuarioAcPosto;
     }
 
-    public List getListaCnpj() {
-        return listaCnpj;
+    public ArrayList<String> getCnpj() {
+        return cnpj;
     }
 
-    public void setListaCnpj(List listaCnpj) {
-        this.listaCnpj = listaCnpj;
+    public void setCnpj(ArrayList<String> cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public void setarCNPJS(Scanner scanner){
+        int cnpjs = 0;
+        System.out.print("Digite quantos CNPJS tem o cliente: ");
+        cnpjs = scanner.nextInt();
+        scanner.nextLine();
+        for (int i = 0; i < cnpjs; i ++){
+            System.out.print("Digite o(s) CNPJ(s): ");
+            String cnpjoto = scanner.nextLine();
+            cnpj.add(cnpjoto);
+        }
     }
 
     @Override
@@ -46,7 +66,7 @@ public class Informacoes {
                 "login='" + login + '\'' +
                 ", senha='" + senha + '\'' +
                 ", usuarioAcPosto='" + usuarioAcPosto + '\'' +
-                ", listaCnpj=" + listaCnpj +
+                ", cnpj=" + cnpj +
                 '}';
     }
 }
