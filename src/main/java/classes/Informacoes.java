@@ -10,9 +10,6 @@ public class Informacoes {
     private ArrayList<String> cnpj;
 
     public Informacoes() {
-        this.login = login;
-        this.senha = senha;
-        this.usuarioAcPosto = usuarioAcPosto;
         this.cnpj = new ArrayList<>();
     }
 
@@ -48,17 +45,10 @@ public class Informacoes {
         this.cnpj = cnpj;
     }
 
-    public void setarCNPJS(Scanner scanner){
-        int cnpjs = 0;
-        System.out.print("Digite quantos CNPJS tem o cliente: ");
-        cnpjs = scanner.nextInt();
-        scanner.nextLine();
-        for (int i = 0; i < cnpjs; i ++){
-            System.out.print("Digite o(s) CNPJ(s): ");
-            String cnpjoto = scanner.nextLine();
-            cnpj.add(cnpjoto);
-        }
+    public void addCnpj(String cnpj){
+        this.cnpj.add(cnpj);
     }
+
 
     @Override
     public String toString() {

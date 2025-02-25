@@ -1,8 +1,9 @@
 package application;
 
 import classes.Informacoes;
+import classes.MyFrame;
 import com.google.gson.Gson;
-    import com.google.gson.GsonBuilder;
+import com.google.gson.GsonBuilder;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,20 +12,28 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        MyFrame frame = new MyFrame();
 
-        Informacoes cliente = new Informacoes();
+        while (frame.isPronto() == false) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Informacoes infoCliente = frame.getCliente();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        System.out.print("Digite o email do cliente para login: ");
-        cliente.setLogin(sc.nextLine());
-        System.out.print("Digite a senha do cliente: ");
-        cliente.setSenha(sc.nextLine());
-        System.out.print("Digite o usuário do cliente no AC-Posto: ");
-        cliente.setUsuarioAcPosto(sc.nextLine());
-        cliente.setarCNPJS(sc);
 
-        String json = gson.toJson(cliente);
-        System.out.println(json);
+        infoCliente.setLogin(infoCliente.getLogin());
+        infoCliente.setSenha(infoCliente.getSenha());
+        infoCliente.setUsuarioAcPosto(infoCliente.getUsuarioAcPosto());
+        infoCliente.setCnpj(infoCliente.getCnpj());
+
+
+        String json = gson.toJson(infoCliente);
+
 
         try {
             FileWriter fw = new FileWriter("C:\\Users\\User\\Desktop\\file.json");
@@ -33,6 +42,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
         sc.close();
 
