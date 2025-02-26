@@ -4,11 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class MyFrame extends JFrame implements ActionListener {
 
     JButton addInfo;
     JButton confirmar;
+    JButton limpar;
+    JLabel descEmail;
+    JLabel descSenha;
+    JLabel descUsuario;
+    JLabel descCnpjs;
     JTextField email;
     JTextField senha;
     JTextField usuario;
@@ -19,36 +23,85 @@ public class MyFrame extends JFrame implements ActionListener {
     private boolean pronto = false;
     public MyFrame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new FlowLayout());
-        this.setSize(500,500);
+        this.setSize(500, 250);
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
+        // Configurações comuns
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);  // Espaçamento
 
+        // Labels e campos de texto
+        descEmail = new JLabel("Email: ");
         email = new JTextField();
-        email.setPreferredSize(new Dimension(250,40));
+        email.setPreferredSize(new Dimension(250, 40));
 
+        descSenha = new JLabel("Senha: ");
         senha = new JTextField();
-        senha.setPreferredSize(new Dimension(250,40));
+        senha.setPreferredSize(new Dimension(250, 40));
 
+        descUsuario = new JLabel("Usuário: ");
         usuario = new JTextField();
-        usuario.setPreferredSize(new Dimension(250,40));
+        usuario.setPreferredSize(new Dimension(250, 40));
 
+        descCnpjs = new JLabel("CNPJ: ");
         cnpjs = new JTextField();
-        cnpjs.setPreferredSize(new Dimension(250,40));
+        cnpjs.setPreferredSize(new Dimension(250, 40));
 
+        // Botões
         addInfo = new JButton("ADD");
         addInfo.addActionListener(this);
 
         confirmar = new JButton("Salvar");
         confirmar.addActionListener(this);
 
+        limpar = new JButton("Limpar");
+        limpar.addActionListener(this);
 
-        this.add(email);
-        this.add(senha);
-        this.add(usuario);
-        this.add(cnpjs);
+        // Adicionando labels (primeira coluna)
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.1;
+        this.add(descEmail, gbc);
 
-        this.add(addInfo);
-        this.add(confirmar);
+        gbc.gridy = 1;
+        this.add(descSenha, gbc);
+
+        gbc.gridy = 2;
+        this.add(descUsuario, gbc);
+
+        gbc.gridy = 3;
+        this.add(descCnpjs, gbc);
+
+        // Adicionando campos de texto (segunda coluna)
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0.9;
+        this.add(email, gbc);
+
+        gbc.gridy = 1;
+        this.add(senha, gbc);
+
+        gbc.gridy = 2;
+        this.add(usuario, gbc);
+
+        gbc.gridy = 3;
+        this.add(cnpjs, gbc);
+
+        // Adicionando botões na parte inferior
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(addInfo);
+        buttonPanel.add(confirmar);
+        buttonPanel.add(limpar);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;  // Estende por 2 colunas
+        gbc.fill = GridBagConstraints.NONE;  // Não esticar os botões
+        gbc.anchor = GridBagConstraints.CENTER;  // Centralizar os botões
+        this.add(buttonPanel, gbc);
+
         this.setVisible(true);
     }
 
@@ -64,6 +117,9 @@ public class MyFrame extends JFrame implements ActionListener {
             pronto = true;
             JOptionPane.showMessageDialog(this, "Dados confirmados!");
         }
+        else if(e.getSource() == limpar){
+            limparCampos();
+        }
     }
 
     public Informacoes getCliente(){
@@ -71,6 +127,17 @@ public class MyFrame extends JFrame implements ActionListener {
     }
     public boolean isPronto() {
         return pronto;
+    }
+    public void limparCampos(){
+        email.setText("");
+        senha.setText("");
+        usuario.setText("");
+        cnpjs.setText("");
+    }
+
+    public void resetPronto(){
+        pronto = false;
+        cliente = new Informacoes(); //Atribuição de novo objeto a variável cliente
     }
 
 
