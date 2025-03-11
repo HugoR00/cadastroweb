@@ -16,7 +16,7 @@ public class MyFrame extends JFrame implements ActionListener {
     JTextField email;
     JTextField senha;
     JTextField usuario;
-    JTextField cnpjs;
+    JTextField listaCnpj;
 
     Informacoes cliente = new Informacoes();
 
@@ -45,8 +45,8 @@ public class MyFrame extends JFrame implements ActionListener {
         usuario.setPreferredSize(new Dimension(250, 40));
 
         descCnpjs = new JLabel("CNPJ: ");
-        cnpjs = new JTextField();
-        cnpjs.setPreferredSize(new Dimension(250, 40));
+        listaCnpj = new JTextField();
+        listaCnpj.setPreferredSize(new Dimension(250, 40));
 
         // Botões
         addInfo = new JButton("ADD");
@@ -86,7 +86,7 @@ public class MyFrame extends JFrame implements ActionListener {
         this.add(usuario, gbc);
 
         gbc.gridy = 3;
-        this.add(cnpjs, gbc);
+        this.add(listaCnpj, gbc);
 
         // Adicionando botões na parte inferior
         JPanel buttonPanel = new JPanel();
@@ -111,7 +111,7 @@ public class MyFrame extends JFrame implements ActionListener {
             cliente.setLogin(email.getText());
             cliente.setSenha(senha.getText());
             cliente.setUsuarioAcPosto(usuario.getText());
-            cliente.addCnpj(cnpjs.getText());
+            cliente.addCnpj(listaCnpj.getText());
         }
         else if(e.getSource() == confirmar){
             pronto = true;
@@ -132,7 +132,7 @@ public class MyFrame extends JFrame implements ActionListener {
         email.setText("");
         senha.setText("");
         usuario.setText("");
-        cnpjs.setText("");
+        listaCnpj.setText("");
     }
 
     public void resetPronto(){

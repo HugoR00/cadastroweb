@@ -7,10 +7,10 @@ public class Informacoes {
     private String login;
     private String senha;
     private String usuarioAcPosto;
-    private ArrayList<String> cnpj;
+    private ArrayList<String> listaCnpj;
 
     public Informacoes() {
-        this.cnpj = new ArrayList<>();
+        this.listaCnpj = new ArrayList<>();
     }
 
     public String getLogin() {
@@ -38,15 +38,15 @@ public class Informacoes {
     }
 
     public ArrayList<String> getCnpj() {
-        return cnpj;
+        return listaCnpj;
     }
 
     public void setCnpj(ArrayList<String> cnpj) {
-        this.cnpj = cnpj;
+        this.listaCnpj = cnpj;
     }
 
     public void addCnpj(String cnpj){
-        this.cnpj.add(cnpj);
+        this.listaCnpj.add(cnpj);
     }
 
 
@@ -56,7 +56,7 @@ public class Informacoes {
                 "login='" + login + '\'' +
                 ", senha='" + senha + '\'' +
                 ", usuarioAcPosto='" + usuarioAcPosto + '\'' +
-                ", cnpj=" + cnpj +
+                ", cnpj=" + listaCnpj +
                 '}';
     }
 }
